@@ -7,6 +7,7 @@ import styled from "styled-components";
 function TransactionItem({items, showNoOfItem, amountColor}) {
     let listHeight = showNoOfItem * 60;
     let sortedItems = items.sort((a, b) => new Date(b.date) - new Date(a.date));
+    /* eslint-disable react/prop-types */
     let FocusStyled = styled.div`
         font-size: large;
         font-weight: bold;
@@ -15,6 +16,7 @@ function TransactionItem({items, showNoOfItem, amountColor}) {
     let DetailsStyled = styled.div`
         opacity: 0.5;
     `;
+    /* eslint-enable react/prop-types */
     let rowNumber = 0;
     return (
         <Stack sx={{height: listHeight + 'px', overflowY: 'auto'}}>

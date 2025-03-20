@@ -16,8 +16,17 @@ import {LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
 import {DatePicker} from "@mui/x-date-pickers/DatePicker";
 import "react";
 import PropTypes from "prop-types";
+import {useState} from "react";
+import dayjs from "dayjs";
 
-function ExpenseDialog({openDialog, setOpenDialogCallback}) {
+function ExpenseDialog({openDialog, setOpenDialogCallback, onSubmit}) {
+    const [formDescription] = useState({});
+    const onFormChanged = (e) => {
+        formDescription[e.target.name] = e.target.value;
+    }
+    const onDateChange = (e) => {
+        formDescription['date'] = dayjs(e).format('MM/DD/YYYY');
+    }
     return (
         <Modal open={openDialog}>
             <Stack
@@ -37,25 +46,27 @@ function ExpenseDialog({openDialog, setOpenDialogCallback}) {
                 <Typography variant="h4" gutterBottom>
                     New Expense
                 </Typography>
-                <TextField id="outlined-basic" label="Name" variant="outlined"/>
-                <TextField id="outlined-basic" label="Amount" variant="outlined"/>
+                <TextField id="outlined-basic" label="name" name="name" variant="outlined" onChange={onFormChanged}/>
+                <TextField id="outlined-basic" label="amount" name="amount" variant="outlined" onChange={onFormChanged}/>
                 <FormControl fullWidth>
                     <InputLabel id="category-select-label">Category</InputLabel>
                     <Select
                         labelId="category-select-label"
                         id="category-select"
-                        label="Age"
-                        variant="outlined">
-                        <MenuItem value={10}>Gasoline</MenuItem>
-                        <MenuItem value={20}>Resturant</MenuItem>
-                        <MenuItem value={30}>Grocery</MenuItem>
-                        <MenuItem value={10}>Food</MenuItem>
-                        <MenuItem value={20}>Trip</MenuItem>
-                        <MenuItem value={30}>Shopping</MenuItem>
+                        name="category"
+                        label="category"
+                        variant="outlined" onChange={onFormChanged}>
+                        <MenuItem value={'Gasoline'}>Gasoline</MenuItem>
+                        <MenuItem value={'Restaurant'}>Restaurant</MenuItem>
+                        <MenuItem value={'Grocery'}>Grocery</MenuItem>
+                        <MenuItem value={'Food'}>Food</MenuItem>
+                        <MenuItem value={'Trip'}>Trip</MenuItem>
+                        <MenuItem value={'Shopping'}>Shopping</MenuItem>
+                        <MenuItem value={'Salary'}>Salary</MenuItem>
                     </Select>
                 </FormControl>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DatePicker label="Date"/>
+                    <DatePicker label="date" name="date" onChange={onDateChange}/>
                 </LocalizationProvider>
                 <Box
                     sx={{
@@ -75,7 +86,11 @@ function ExpenseDialog({openDialog, setOpenDialogCallback}) {
                     >
                         Cancel
                     </Button>
-                    <Button size="md" variant="contained">
+                    <Button size="md" variant="contained" onClick={() => {
+                        onSubmit(formDescription)
+                        setOpenDialogCallback(false);
+                    }
+                    }>
                         Submit
                     </Button>
                 </Box>
@@ -85,6 +100,7 @@ function ExpenseDialog({openDialog, setOpenDialogCallback}) {
 }
 
 ExpenseDialog.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
     openDialog: PropTypes.bool.isRequired,
     setOpenDialogCallback: PropTypes.func.isRequired,
 };
