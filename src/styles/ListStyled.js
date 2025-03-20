@@ -15,6 +15,7 @@ export const ItemStyled = styled.div`
     flex-wrap: nowrap;
     justify-content: space-around;
     gap: 10px;
+    background-color: ${ props => props.rowNo % 2 === 0 ? "#ffffff" : "rgba(0,0,0,0.05)" };
   `;
 export const LeftSide = styled.div`
     width: 5%;

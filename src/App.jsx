@@ -9,9 +9,9 @@ import Dashboard from "./components/home/Dashboard.jsx";
 
 function App() {
     return (
-        <Stack direction="column" sx={{flexGrow: 1, justifyContent: "space-between", alignItems: "center"}}>
+        <Stack direction="column" sx={{flexGrow: 1, justifyContent: "space-between", alignItems: "center", gap: '10px'}}>
             <Nav></Nav>
-            <Box sx={{width:'80%'}}>
+            <Box sx={{width:'100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <Routes>
                 <Route path="/" element={<Dashboard/>}/>
                 <Route

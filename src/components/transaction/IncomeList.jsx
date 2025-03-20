@@ -3,44 +3,31 @@ import {Box, Button, FormControl, Grow, OutlinedInput} from "@mui/material";
 import {Search} from "@mui/icons-material";
 import ExpenseDialog from "./ExpenseDialog.jsx";
 import TransactionItem from "./TransactionItem.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {TopContainer} from "../../styles/ListStyled.js";
-import PropTypes from "prop-types";
 
-export default function IncomeList({currentTime}) {
+export default function IncomeList() {
     const [openDialog, setOpenDialog] = useState(false);
-    const rows = [
-        {
-            id: "1",
-            name: "Costco Gas",
-            amount: 90,
-            category: "Gasoline",
-            date: "01/05/2002",
-        },
-        {
-            id: "2",
-            name: "Costco Gas",
-            amount: 90,
-            category: "Gasoline",
-            date: "01/05/2002",
-        }
-    ];
+    const [incomeList, setIncomeList] = useState([]);
+
+    useEffect(() => {
+        fetch('src/data/incomes.json')
+            .then(res => res.json())
+            .then(data => setIncomeList(data))
+    }, []);
 
     return (
         <Grow in={true}>
             <Box
                 sx={{
                     backgroundColor: "white",
-                    marginTop: "10px",
-                    marginLeft: "30px",
-                    marginRight: "20%",
                     padding: "20px",
                     boxShadow: "0px 0px 10px 5px #b0b4b4",
-                    borderRadius: "5px"
+                    borderRadius: "5px",
+                    width: '60%'
                 }}
                 gap={1}
             >
-                <h1>Income</h1>
                 <FormControl sx={{width: "60%"}}>
                     <OutlinedInput
                         placeholder="Search Income"
@@ -48,7 +35,7 @@ export default function IncomeList({currentTime}) {
                     />
                 </FormControl>
                 <TopContainer>
-                    <h2>{currentTime}</h2>
+                    <h2>Recent Income</h2>
                     <ExpenseDialog
                         openDialog={openDialog}
                         setOpenDialogCallback={setOpenDialog}
@@ -63,12 +50,10 @@ export default function IncomeList({currentTime}) {
                         New Income
                     </Button>
                 </TopContainer>
-                <TransactionItem items={rows}/>
+                <TransactionItem items={incomeList} showNoOfItem={5} amountColor={'green'}/>
             </Box>
         </Grow>
     );
 };
 
-IncomeList.propTypes = {
-    currentTime : PropTypes.string
-}
+IncomeList.propTypes = {}

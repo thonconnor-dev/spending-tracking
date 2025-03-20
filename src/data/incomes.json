@@ -1,0 +1,58 @@
+[
+  {
+    "id": "1",
+    "name": "Company Deposit May 24",
+    "amount": 1600.50,
+    "category": "Salary",
+    "date": "05/01/2024"
+  },
+  {
+    "id": "2",
+    "name": "Company Deposit June 24",
+    "amount": 1600.50,
+    "category": "Salary",
+    "date": "06/01/2024"
+  },
+  {
+    "id": "3",
+    "name": "Company Deposit July 24",
+    "amount": 1600.50,
+    "category": "Salary",
+    "date": "07/01/2024"
+  },
+  {
+    "id": "4",
+    "name": "Company Deposit Aug 24",
+    "amount": 1600.50,
+    "category": "Salary",
+    "date": "08/01/2024"
+  },
+  {
+    "id": "5",
+    "name": "Company Deposit Sep 24",
+    "amount": 1600.50,
+    "category": "Salary",
+    "date": "09/01/2024"
+  },
+  {
+    "id": "6",
+    "name": "Company Deposit Oct 24",
+    "amount": 1600.50,
+    "category": "Salary",
+    "date": "10/01/2024"
+  },
+  {
+    "id": "7",
+    "name": "Company Deposit Nov 24",
+    "amount": 1600.50,
+    "category": "Salary",
+    "date": "11/01/2024"
+  },
+  {
+    "id": "8",
+    "name": "Company Deposit Dec 24",
+    "amount": 1600.50,
+    "category": "Salary",
+    "date": "12/01/2024"
+  }
+]

@@ -1,39 +1,52 @@
-import { Stack } from "@mui/material";
+import {Stack} from "@mui/material";
 import PropTypes from "prop-types";
 import "react";
-import {CenterSide, DivLine, ItemStyled, LeftSide, RightSide} from "../../styles/ListStyled.js";
+import {CenterSide, ItemStyled, LeftSide, RightSide} from "../../styles/ListStyled.js";
+import styled from "styled-components";
 
-function TransactionItem({items}) {
-
-
-  return (
-    <Stack>
-      {items.map((row) => (
-        <>
-          <ItemStyled key={row.name}>
-            <LeftSide>
-              <img src="src/assets/react.svg"  alt="icon"/>
-            </LeftSide>
-            <CenterSide>
-              <div>{row.name}</div>
-              <div>{row.category}</div>
-            </CenterSide>
-            <RightSide>
-              <div>{row.amount}</div>
-              <div>{row.date}</div>
-            </RightSide>
-          </ItemStyled>
-          <DivLine key={row.name + "line"}></DivLine>
-        </>
-      ))}
-    </Stack>
-  );
+function TransactionItem({items, showNoOfItem, amountColor}) {
+    let listHeight = showNoOfItem * 60;
+    let sortedItems = items.sort((a, b) => new Date(b.date) - new Date(a.date));
+    let FocusStyled = styled.div`
+        font-size: large;
+        font-weight: bold;
+        color: ${(props) => props.color || "black"};
+    `;
+    let DetailsStyled = styled.div`
+        opacity: 0.5;
+    `;
+    let rowNumber = 0;
+    return (
+        <Stack sx={{height: listHeight + 'px', overflowY: 'auto'}}>
+            {sortedItems.map((row) => {
+                    rowNumber++;
+                    return (
+                        <ItemStyled rowNo={rowNumber} key={row.id}>
+                            <LeftSide>
+                                <img src="src/assets/react.svg" alt="icon"/>
+                            </LeftSide>
+                            <CenterSide>
+                                <FocusStyled>{row.name}</FocusStyled>
+                                <DetailsStyled>{row.category}</DetailsStyled>
+                            </CenterSide>
+                            <RightSide>
+                                <FocusStyled color={amountColor}>${row.amount}</FocusStyled>
+                                <DetailsStyled>{row.date}</DetailsStyled>
+                            </RightSide>
+                        </ItemStyled>
+                    )
+                }
+            )}
+        </Stack>
+    );
 }
 
 TransactionItem.propTypes = {
-    items : PropTypes.arrayOf({
+    amountColor: PropTypes.string,
+    showNoOfItem: PropTypes.number.isRequired,
+    items: PropTypes.arrayOf({
         id: PropTypes.string,
-        name : PropTypes.string,
+        name: PropTypes.string,
         category: PropTypes.string,
         amount: PropTypes.string,
         date: PropTypes.string
