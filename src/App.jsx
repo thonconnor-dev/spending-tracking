@@ -1,4 +1,4 @@
-import {Box, Grid2, Stack} from "@mui/material";
+import {Box, Stack} from "@mui/material";
 import "./App.css";
 import Nav from "./components/navigation/Nav";
 import TransactionList from "./components/transaction/TransactionList";

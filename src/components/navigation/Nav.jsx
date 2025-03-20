@@ -1,10 +1,8 @@
 import "react";
-import { Grid2, Stack } from "@mui/material";
-import MyLogo from "../../assets/react.svg?react";
+import {  Stack } from "@mui/material";
 import {
   AttachMoney,
-  CurrencyExchange,
-  Dashboard, Home,
+  CurrencyExchange, Home,
   Payments,
 } from "@mui/icons-material";
 import NavItem from "./NavItem";

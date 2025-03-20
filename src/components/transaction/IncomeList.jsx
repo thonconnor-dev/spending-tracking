@@ -5,6 +5,7 @@ import ExpenseDialog from "./ExpenseDialog.jsx";
 import TransactionItem from "./TransactionItem.jsx";
 import {useEffect, useState} from "react";
 import {TopContainer} from "../../styles/ListStyled.js";
+import { UUID } from 'uuidjs';
 
 export default function IncomeList() {
     const [openDialog, setOpenDialog] = useState(false);
@@ -15,6 +16,16 @@ export default function IncomeList() {
             .then(res => res.json())
             .then(data => setIncomeList(data))
     }, []);
+
+    const OnAddNewIncome = (newIncome) => {
+        incomeList.push({
+            id: UUID.generate(),
+            name: newIncome.name,
+            description: newIncome.description,
+            amount: newIncome.amount,
+            date: newIncome.date
+        })
+    }
 
     return (
         <Grow in={true}>
@@ -39,6 +50,7 @@ export default function IncomeList() {
                     <ExpenseDialog
                         openDialog={openDialog}
                         setOpenDialogCallback={setOpenDialog}
+                        onSubmit={OnAddNewIncome}
                     />
                     <Button
                         variant="contained"
