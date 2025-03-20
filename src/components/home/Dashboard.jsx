@@ -6,15 +6,14 @@ export default function Dashboard() {
     return (
         <Grow in={true}>
             <Box>
-                <h1>Welcome Sethon</h1>
+                <h1>Welcome Thon Connor</h1>
                 <Box
                     sx={{
                         backgroundColor: "white",
-                        marginTop: "10px",
-                        marginRight: "20%",
-                        padding: "20px",
+                        padding: "10px",
                         boxShadow: "0px 0px 10px 5px #b0b4b4",
-                        borderRadius: "5px"
+                        borderRadius: "5px",
+                        width: "auto",
                     }}
                     gap={1}
                 >
@@ -27,7 +26,7 @@ export default function Dashboard() {
                                 data: [2, 5.5, 2, 8.5, 1.5, 5],
                             },
                         ]}
-                        width={500}
+                        width={800}
                         height={300}
                     />
                 </Box>
