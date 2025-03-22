@@ -19,7 +19,7 @@ function TransactionItem({items, showNoOfItem, amountColor}) {
     /* eslint-enable react/prop-types */
     let rowNumber = 0;
     return (
-        <Stack sx={{height: listHeight + 'px', overflowY: 'auto'}}>
+        <Stack sx={{height: `${listHeight}px`, overflowY: 'auto'}}>
             {sortedItems.map((row) => {
                     rowNumber++;
                     return (

@@ -3,28 +3,23 @@ import {Box, Button, FormControl, Grow, OutlinedInput} from "@mui/material";
 import {Search} from "@mui/icons-material";
 import ExpenseDialog from "./ExpenseDialog.jsx";
 import TransactionItem from "./TransactionItem.jsx";
-import {useEffect, useState} from "react";
+import {useContext, useState} from "react";
 import {TopContainer} from "../../styles/ListStyled.js";
-import { UUID } from 'uuidjs';
+import {UUID} from 'uuidjs';
+import {IncomeContext} from "../../context/ContextProvider.js";
 
 export default function IncomeList() {
     const [openDialog, setOpenDialog] = useState(false);
-    const [incomeList, setIncomeList] = useState([]);
-
-    useEffect(() => {
-        fetch('src/data/incomes.json')
-            .then(res => res.json())
-            .then(data => setIncomeList(data))
-    }, []);
+    const {incomeList, setIncomeList} = useContext(IncomeContext);
 
     const OnAddNewIncome = (newIncome) => {
-        incomeList.push({
+        setIncomeList([...incomeList, {
             id: UUID.generate(),
             name: newIncome.name,
             description: newIncome.description,
             amount: newIncome.amount,
             date: newIncome.date
-        })
+        }]);
     }
 
     return (
